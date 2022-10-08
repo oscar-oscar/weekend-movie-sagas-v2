@@ -31,7 +31,8 @@ function MovieList() {
         // this action type matched reducer so what's sent in payload
         // is stored in selectedMovie reducer
         // test this and you should see selectedMovie in console
-        dispatch({ type: 'SET_MOVIE_DETAILS', payload: movieToDisplay });
+        // can removie dispatch below once MovieDetails handles it
+        // dispatch({ type: 'SET_MOVIE_DETAILS', payload: movieToDisplay });
         // adding the .id allows us to retrive the details upon refreshing 
         // the page because it's part of the url
         // add the parameter to the route in App.js "/details:id"

@@ -24,7 +24,7 @@
 - [x] add new component MovieDetails
 - [x] import into App.js and create Route w/in Router
 - [x] history.push in MovieList or MovieItem will move use here. Remember to import useHistory and set history variable 
-- [x] display tite, poster and description on  `/deatils` page
+- [x] display tite, poster and description on  `/details` page
 - [x] base mode complete
 --
 - [x] retreive data details on refresh 
@@ -39,3 +39,11 @@
     - yield takeEvery  `FETCH_MOVIE_DETAILS` 
 - [x] create axios get route via generator function*fetchMovieDetails 
 - [x] create GET route in  movierouter.js for specefic movie 
+
+-- 
+Display Genre on `/details` page
+- [x] can add axios.get into function* fetchMovieDetails to get genre
+- [x] create query in genre.router.js to get all genres that match id passed in url
+- [x] will need query in genre.router.js (query needs to join tables)
+- [x] useSelector to pull out genre data and display on page
+- [x] map genres and display on page

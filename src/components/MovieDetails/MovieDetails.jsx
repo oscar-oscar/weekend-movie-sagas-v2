@@ -17,6 +17,8 @@ function MovieDetails() {
     // pulled out below in params 
     const { movieId } = useParams();
     const dispatch = useDispatch();
+    //pulling out genre data from redux
+    const genres = useSelector(store => store.genres);
 
     // useEffect dispatches FETCH_MOVIE_DETAILS whenever movieId changes
     // not soley upon page refresh
@@ -28,13 +30,15 @@ function MovieDetails() {
     // a saga in index.js will be neeeded to run when we call FETCH_MOVIE_DETAILS
 
     useEffect(() => {
+        // this dispatch is getting the genre too since we added the get request
+        // within the same saga
         dispatch({ type: 'FETCH_MOVIE_DETAILS', payload: movieId });
     }, [movieId])
 
     return (
         <div>
             {/* h1: to test params is working. Should see id# displayed when refreshed */}
-            <h1>{movieId}</h1>
+            {/* <h1>{movieId}</h1> */}
             <h3> Movie Title</h3>
             <img src={movieDetails.poster} alt={movieDetails.title} />
             <h3>Movie Description </h3>
@@ -42,6 +46,11 @@ function MovieDetails() {
             <p>
                 {movieDetails.description}
             </p>
+            <ul>
+                {
+                    genres.map(genreToDisplay => <li>{genreToDisplay}</li>)
+                }
+            </ul>
         </div>
     )
 }

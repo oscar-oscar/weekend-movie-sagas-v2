@@ -26,8 +26,15 @@ function* fetchMovieDetails(action){
         // specific movie from server - check movierouter.js if route exists
         const movie = yield axios.get(`/api/movie/${action.payload}`);
         yield put({ type: 'SET_MOVIE_DETAILS', payload: movie.data});
+        // can add multiple yields w/in a generator function since the genre is technically
+        // part of the movie details. Non related aspects should be in seperate saga (generator function)
+        // fetch genres
+        // check to see if you need query in genrerouter.js
+        // this will be populating in genres reducer
+        const genres = yield axios.get(`/api/genre/${action.payload}`);
+        yield put({ type: 'SET_GENRES', payload: genres.data}); //genres.data is response from server
     }catch (error){
-        console.log('get details error');
+        console.log('get details error', error);
     }
 }
 
