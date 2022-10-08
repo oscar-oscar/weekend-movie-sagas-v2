@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 //import useHistory to allow for history.push to work
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function MovieList() {
     //dispatch is how we get data into redux
@@ -32,7 +32,10 @@ function MovieList() {
         // is stored in selectedMovie reducer
         // test this and you should see selectedMovie in console
         dispatch({ type: 'SET_MOVIE_DETAILS', payload: movieToDisplay });
-        history.push('/details');
+        // adding the .id allows us to retrive the details upon refreshing 
+        // the page because it's part of the url
+        // add the parameter to the route in App.js "/details:id"
+        history.push(`/details/${movieToDisplay.id}`);
 
     }
 

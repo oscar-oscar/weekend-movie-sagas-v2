@@ -25,4 +25,10 @@
 - [x] import into App.js and create Route w/in Router
 - [x] history.push in MovieList or MovieItem will move use here. Remember to import useHistory and set history variable 
 - [x] display tite, poster and description on  `/deatils` page
+- [x] base mode complete
+--
+- [] retreive details on refresh
+- add ${movieToDisplay.id} into history.push url
+- add :id param in Route url path in App.js
+- add useEffect to display on refresh
 
