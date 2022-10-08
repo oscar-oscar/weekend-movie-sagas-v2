@@ -15,6 +15,25 @@ router.get('/', (req, res) => {
     })
 
 });
+//route for specefic movie by id param
+router.get('/:id', (req, res) => {
+// selects where movie matches id passed
+  const query = `SELECT * FROM movies WHERE "id"=$1`;
+  //passing array=req.params.id
+  pool.query(query, [req.params.id])//movie passed
+    .then( result => {
+      //returns first item (the movie which is an object) in array 
+      // object in reducer
+      // returns one result when matching by id
+      // this all passes through SET_MOVIE_DETAILS in saga
+      res.send(result.rows[0]);
+    })
+    .catch(err => {
+      console.log('ERROR: Get all movies', err);
+      res.sendStatus(500)
+    })
+
+});
 
 router.post('/', (req, res) => {
   console.log(req.body);

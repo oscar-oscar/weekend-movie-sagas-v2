@@ -8,13 +8,27 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
-import { takeEvery, put } from 'redux-saga/effects';
+import { takeEvery, put, take } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Create the rootSaga generator function
 // 1: listening for actions to call function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery('FETCH_MOVIE_DETAILS',fetchMovieDetails )
+}
+
+function* fetchMovieDetails(action){
+    try{
+        // the action.payload here == movieId in payload from the dispatch
+        // in useEffect. 
+        // we want the movie id from url "movieId" dispatch with the action to fetch
+        // specific movie from server - check movierouter.js if route exists
+        const movie = yield axios.get(`/api/movie/${action.payload}`);
+        yield put({ type: 'SET_MOVIE_DETAILS', payload: movie.data});
+    }catch (error){
+        console.log('get details error');
+    }
 }
 
 function* fetchAllMovies() {
@@ -23,6 +37,7 @@ function* fetchAllMovies() {
     try {
         const movies = yield axios.get('/api/movie');
         console.log('get all:', movies.data);
+    //                                  data from the server (is an object)
         yield put({ type: 'SET_MOVIES', payload: movies.data });
 
     } catch {
@@ -66,6 +81,7 @@ const selectedMovie = (state = {}, action) => {
         //listen for SET MOVIE DETAILS
         case 'SET_MOVIE_DETAILS':
             //return replaces selected movie
+            // data fetched in saga is replacing action.payload in return below
             return action.payload;
         default:
             return state;

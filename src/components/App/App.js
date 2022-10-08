@@ -16,8 +16,9 @@ function App() {
         {/* Details page 
         -we added the  movie id parameter to retrieve details
         upon page refresh
-        -should now see id number in url*/}
-        <Route path="/details/:id" exact>
+        -should now see id number in url
+        -movieId should match useParams in MovieDetails comp*/}
+        <Route path="/details/:movieId" exact>
           <MovieDetails />
         </Route>
 

@@ -27,8 +27,15 @@
 - [x] display tite, poster and description on  `/deatils` page
 - [x] base mode complete
 --
-- [] retreive details on refresh
+- [x] retreive data details on refresh 
 - add ${movieToDisplay.id} into history.push url
 - add :id param in Route url path in App.js
-- add useEffect to display on refresh
+[x] display details on DOM on refresh
+- will need useEffect to display on refresh
+- [x]import useParams from react-router-dom in MovieDetails comp
+- [x] in useEffect dispatch `FETCH_MOVIE_DETAILS` with payload of movieId
 
+- [x] create saga to run when  `FETCH_MOVIE_DETAILS` is called
+    - yield takeEvery  `FETCH_MOVIE_DETAILS` 
+- [x] create axios get route via generator function*fetchMovieDetails 
+- [x] create GET route in  movierouter.js for specefic movie 
