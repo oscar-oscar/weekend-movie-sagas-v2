@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
+//import useHistory to allow for history.push to work
+import {useHistory} from 'react-router-dom';
 
 function MovieList() {
     //dispatch is how we get data into redux
     const dispatch = useDispatch();
+    //can only use history in comps that are contained w/in Router in App.js
+    const history = useHistory();
     const movies = useSelector(store => store.movies);
     // dispatching action = FETCH MOVIES which triggers root saga listening for FETCH MOVIES
     useEffect(() => {
@@ -12,13 +16,14 @@ function MovieList() {
     }, []);
 
     //movie that we clicked on
+
     const displayMovie = (movieToDisplay) => {
         // we want to know that it's actually an object
         // with properties not something unexpected
         // should see object with properties of movie clicked
         console.log(movieToDisplay);
         // dispatch will communicate to redux and sagas
-        // make sure actions are unique between redux and saga
+        // make sure action type strings are unique between redux and saga
         //  payload : what we're setting selectedMovie to
         // movieToDisplay is an object
         // this dispatch payload movieToDisplay and gets
@@ -26,7 +31,8 @@ function MovieList() {
         // this action type matched reducer so what's sent in payload
         // is stored in selectedMovie reducer
         // test this and you should see selectedMovie in console
-        dispatch({ type: 'SET_MOVIE_DETAILS', payload: movieToDisplay })
+        dispatch({ type: 'SET_MOVIE_DETAILS', payload: movieToDisplay });
+        history.push('/details');
 
     }
 
