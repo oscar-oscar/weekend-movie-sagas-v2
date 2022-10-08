@@ -22,6 +22,7 @@
 
 ### Details View page 
 - [x] add new component MovieDetails
-- [x] import into App.js and create Route in Router
-- [] history.push in MovieList or MovieItem will move user here
-  (import useHistory and set history variable)
+- [x] import into App.js and create Route w/in Router
+- [x] history.push in MovieList or MovieItem will move use here. Remember to import useHistory and set history variable 
+- [x] display tite, poster and description on  `/deatils` page
+
