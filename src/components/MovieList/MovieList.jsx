@@ -6,7 +6,7 @@ function MovieList() {
 
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
-
+// dispatching action = FETCH MOVIES which triggers root saga listening for FETCH MOVIES
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
