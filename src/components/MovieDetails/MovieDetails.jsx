@@ -48,7 +48,17 @@ function MovieDetails() {
             </p>
             <ul>
                 {
-                    genres.map(genreToDisplay => <li>{genreToDisplay}</li>)
+                    // Objects are not valid as a React child error because we were returning
+                    // an object. We need to return an array or add the .name property to genreToDisplay
+                    // genres.map(genreToDisplay => <li>{genreToDisplay.name}</li>)
+                    genres.map((genre) => {
+                        return(
+                            <li key={genre.id}>
+                                {genre.name}
+                            </li>
+                        )
+                    })
+                   
                 }
             </ul>
         </div>
