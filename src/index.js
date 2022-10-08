@@ -59,6 +59,8 @@ const genres = (state = [], action) => {
 //reducer for selectedMovie
 // initial state set to empty object
 // remember to add to combineReducers list
+// we want selectedMovie(reducer) to match  movieToDisplay
+// action payload is new selectedMovie value
 const selectedMovie = (state = {}, action) => {
     switch (action.type) {
         //listen for SET MOVIE DETAILS

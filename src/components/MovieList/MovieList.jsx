@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 
 function MovieList() {
-
+    //dispatch is how we get data into redux
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
-// dispatching action = FETCH MOVIES which triggers root saga listening for FETCH MOVIES
+    // dispatching action = FETCH MOVIES which triggers root saga listening for FETCH MOVIES
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
@@ -17,6 +17,16 @@ function MovieList() {
         // with properties not something unexpected
         // should see object with properties of movie clicked
         console.log(movieToDisplay);
+        // dispatch will communicate to redux and sagas
+        // make sure actions are unique between redux and saga
+        //  payload : what we're setting selectedMovie to
+        // movieToDisplay is an object
+        // this dispatch payload movieToDisplay and gets
+        // assigned to new value of selectedMovie (reducer)
+        // this action type matched reducer so what's sent in payload
+        // is stored in selectedMovie reducer
+        // test this and you should see selectedMovie in console
+        dispatch({ type: 'SET_MOVIE_DETAILS', payload: movieToDisplay })
 
     }
 
@@ -42,7 +52,7 @@ function MovieList() {
                             function below is passed and event. not necess to
                             do anything with event
                                           event              argument */}
-                            <img onClick={(event) => displayMovie(movie)} src={movie.poster} alt={movie.title}/>
+                            <img onClick={(event) => displayMovie(movie)} src={movie.poster} alt={movie.title} />
                         </div>
                     );
                 })}
